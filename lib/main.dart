@@ -1,6 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:quizapp/question.dart';
+import 'package:quizapp/question_controller.dart';
 
 void main() => runApp(MyApp());
+QuestionController questionController = new QuestionController();
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -26,6 +31,19 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<Widget> scoreKeeper = [];
+
+//  List<String> questions = [
+//    "Flutter was created by google",
+//    "donkeys can fly",
+//    "birds can swim",
+//    "trees can dance"
+//  ];
+
+//  List<bool> ans = [true, false, false, false];
+
+  int questionNo = 1;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,7 +56,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                "How are you?",
+                questionController.qns[questionNo].qn,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -60,7 +78,24 @@ class _QuizPageState extends State<QuizPage> {
                   color: Colors.white,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  if (questionController.qns[questionNo].ans == true) {
+                    scoreKeeper.add(Icon(
+                      Icons.check,
+                      size: 24,
+                      color: Colors.green,
+                    ));
+                  } else {
+                    scoreKeeper.add(Icon(
+                      Icons.close,
+                      size: 24,
+                      color: Colors.red,
+                    ));
+                  }
+                  questionNo++;
+                });
+              },
             ),
           ),
         ),
@@ -76,10 +111,30 @@ class _QuizPageState extends State<QuizPage> {
                   color: Colors.white,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  if (questionController.qns[questionNo].ans == false) {
+                    scoreKeeper.add(Icon(
+                      Icons.check,
+                      size: 24,
+                      color: Colors.green,
+                    ));
+                  } else {
+                    scoreKeeper.add(Icon(
+                      Icons.close,
+                      size: 24,
+                      color: Colors.red,
+                    ));
+                  }
+                  questionNo++;
+                });
+              },
             ),
           ),
         ),
+        Row(
+          children: scoreKeeper,
+        )
       ],
     );
   }
