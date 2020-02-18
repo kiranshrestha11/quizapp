@@ -31,6 +31,21 @@ class QuestionController {
     Question(
         'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         true),
+    Question(
+        'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
+        true),
+    Question(
+        'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
+        true),
+    Question(
+        'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
+        true),
+    Question(
+        'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
+        true),
+    Question(
+        'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
+        true),
   ];
   int _questionNumber = 0;
   String getquestionstext() {
@@ -47,5 +62,15 @@ class QuestionController {
     }
   }
 
-  void isFinished() {}
+  bool isFinished() {
+    if (_questionNumber < _qns.length - 1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  void reset() {
+    _questionNumber = 0;
+  }
 }
