@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:quizapp/question.dart';
 import 'package:quizapp/question_controller.dart';
@@ -33,17 +32,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
 
-//  List<String> questions = [
-//    "Flutter was created by google",
-//    "donkeys can fly",
-//    "birds can swim",
-//    "trees can dance"
-//  ];
-
-//  List<bool> ans = [true, false, false, false];
-
-  int questionNo = 1;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -56,7 +44,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionController.qns[questionNo].qn,
+                questionController.getquestionstext(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -80,7 +68,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  if (questionController.qns[questionNo].ans == true) {
+                  if (questionController.getAnswerResult() == true) {
                     scoreKeeper.add(Icon(
                       Icons.check,
                       size: 24,
@@ -93,7 +81,7 @@ class _QuizPageState extends State<QuizPage> {
                       color: Colors.red,
                     ));
                   }
-                  questionNo++;
+                  questionController.nextQuestion();
                 });
               },
             ),
@@ -113,7 +101,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  if (questionController.qns[questionNo].ans == false) {
+                  if (questionController.getAnswerResult() == false) {
                     scoreKeeper.add(Icon(
                       Icons.check,
                       size: 24,
@@ -126,7 +114,7 @@ class _QuizPageState extends State<QuizPage> {
                       color: Colors.red,
                     ));
                   }
-                  questionNo++;
+                  questionController.nextQuestion();
                 });
               },
             ),

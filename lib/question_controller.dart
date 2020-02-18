@@ -1,7 +1,7 @@
 import 'package:quizapp/question.dart';
 
 class QuestionController {
-  List<Question> qns = [
+  List<Question> _qns = [
     Question("donkeys can fly", false),
     Question("Flutter was created by google", true),
     Question("birds can swim", false),
@@ -32,4 +32,20 @@ class QuestionController {
         'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         true),
   ];
+  int _questionNumber = 0;
+  String getquestionstext() {
+    return _qns[_questionNumber].qn;
+  }
+
+  bool getAnswerResult() {
+    return _qns[_questionNumber].ans;
+  }
+
+  void nextQuestion() {
+    if (_questionNumber < _qns.length - 1) {
+      _questionNumber++;
+    }
+  }
+
+  void isFinished() {}
 }
